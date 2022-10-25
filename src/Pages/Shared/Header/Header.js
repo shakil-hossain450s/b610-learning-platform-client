@@ -1,9 +1,13 @@
 import React from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+  console.log(user.displayName);
   return (
-    <div>
+    <div className="sticky top-0 left-0 z-20">
       <div className="navbar bg-gray-100 shadow-md d-flex justify-between lg:px-12">
         <div className="">
           <div className="dropdown">
@@ -83,6 +87,11 @@ const Header = () => {
             <li className="mr-2">
               <Link to="/login" className="text-[16px] font-medium">
                 Login
+              </Link>
+            </li>
+            <li className="mr-2">
+              <Link className="text-[16px] font-medium">
+                {user?.displayName}
               </Link>
             </li>
           </ul>
