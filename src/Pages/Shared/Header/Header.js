@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -70,7 +71,6 @@ const Header = () => {
             : 
               <>
                 <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
-                <li><Link to="/register" className="text-[16px] font-medium">Register</Link></li>
               </>
             }
             </ul>
@@ -111,9 +111,16 @@ const Header = () => {
             : 
               <>
                 <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
-                <li><Link to="/register" className="text-[16px] font-medium">Register</Link></li>
               </>
             }
+            <Link to="/profile">
+            {
+                user?.photoURL ? 
+                    <img src={user?.photoURL} alt="" />
+                    : 
+                    <span className="text-2xl"><FaUserCircle></FaUserCircle></span>
+            }
+            </Link>         
           </ul>
         </div>
       </div>
