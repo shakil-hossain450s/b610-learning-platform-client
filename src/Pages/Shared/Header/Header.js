@@ -27,17 +27,30 @@ const Header = () => {
               tabIndex={0}
               className="menu menu-compact dropdown-content mt-3 p-2 bg-gray-100 shadow-lg rounded-box w-52"
             >
-              <li>
-                <Link className="text-[16px] font-medium">Home</Link>
+              <li className="mr-2">
+                <Link to="/" className="text-[16px] font-medium">
+                  Home
+                </Link>
               </li>
-              <li>
-                <Link className="text-[16px] font-medium">Courses</Link>
+              <li className="mr-2">
+                <Link to="/courses" className="text-[16px] font-medium">
+                  Courses
+                </Link>
               </li>
-              <li>
-                <Link className="text-[16px] font-medium">Blog</Link>
+              <li className="mr-2">
+                <Link to="/blog" className="text-[16px] font-medium">
+                  Blog
+                </Link>
               </li>
-              <li>
-                <Link className="text-[16px] font-medium">About</Link>
+              <li className="mr-2">
+                <Link to="/faq" className="text-[16px] font-medium">
+                  FAQ
+                </Link>
+              </li>
+              <li className="mr-2">
+                <Link to="/login" className="text-[16px] font-medium">
+                  Login
+                </Link>
               </li>
             </ul>
           </div>
@@ -47,17 +60,30 @@ const Header = () => {
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal p-0">
-            <li>
-              <Link className="text-[16px] font-medium">Home</Link>
+            <li className="mr-2">
+              <Link to="/" className="text-[16px] font-medium">
+                Home
+              </Link>
             </li>
-            <li>
-              <Link className="text-[16px] font-medium">Courses</Link>
+            <li className="mr-2">
+              <Link to="/courses" className="text-[16px] font-medium">
+                Courses
+              </Link>
             </li>
-            <li>
-              <Link className="text-[16px] font-medium">Blog</Link>
+            <li className="mr-2">
+              <Link to="/blog" className="text-[16px] font-medium">
+                Blog
+              </Link>
             </li>
-            <li>
-              <Link className="text-[16px] font-medium">About</Link>
+            <li className="mr-2">
+              <Link to="/faq" className="text-[16px] font-medium">
+                FAQ
+              </Link>
+            </li>
+            <li className="mr-2">
+              <Link to="/login" className="text-[16px] font-medium">
+                Login
+              </Link>
             </li>
           </ul>
         </div>
