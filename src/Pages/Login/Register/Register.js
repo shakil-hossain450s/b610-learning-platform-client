@@ -1,14 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Register = () => {
-  const { providerLogin } = useContext(AuthContext);
+  const { providerLogin, createUser } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+
+  const handleToSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        if (user.emailVerified) {
+        } else {
+          toast.error("Please verify your email address");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        toast.error(error.message);
+      });
+  };
 
   const handleToGoogleSignIn = () => {
     providerLogin(googleProvider)
@@ -36,7 +61,7 @@ const Register = () => {
     <div>
       <div className="mt-8 p-5 lg:w-[40%] lg:mx-auto mx-4 border-2 border-slate-300 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mt-3 mb-5">Create an account</h2>
-        <form className="w-[90%] mx-auto">
+        <form onSubmit={handleToSubmit} className="w-[90%] mx-auto">
           <div>
             <label htmlFor="name" className="text-[16px] font-medium">
               Name
@@ -68,10 +93,11 @@ const Register = () => {
               name="email"
               placeholder="Email Address"
               className="input input-bordered w-[100%] mt-2"
+              required
             />
           </div>
           <div className="my-5">
-            <label htmlFor="passwors" className="text-[16px] font-medium">
+            <label htmlFor="password" className="text-[16px] font-medium">
               Password
             </label>
             <input
@@ -79,6 +105,7 @@ const Register = () => {
               name="password"
               placeholder="Password"
               className="input input-bordered w-[100%] mt-2"
+              required
             />
           </div>
           <button

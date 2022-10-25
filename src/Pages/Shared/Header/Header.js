@@ -2,10 +2,19 @@ import React from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
 
 const Header = () => {
-  const { user } = useContext(AuthContext);
-  console.log(user.displayName);
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user?.displayName);
+
+  const handleToLogOut = () => {
+    logOut()
+      .then(() => {
+        toast.success("Successfully logged out!");
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="sticky top-0 left-0 z-20">
       <div className="navbar bg-gray-100 shadow-md d-flex justify-between lg:px-12">
@@ -51,11 +60,19 @@ const Header = () => {
                   FAQ
                 </Link>
               </li>
-              <li className="mr-2">
-                <Link to="/login" className="text-[16px] font-medium">
-                  Login
+              {user?.uid ?
+              <>
+                <span>{user?.displayName}</span>
+                <Link onClick={handleToLogOut} className="text-[16px] font-medium">
+                  Logout
                 </Link>
-              </li>
+              </>
+            : 
+              <>
+                <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
+                <li><Link to="/register" className="text-[16px] font-medium">Register</Link></li>
+              </>
+            }
             </ul>
           </div>
           <Link to="/" className="text-2xl font-medium">
@@ -84,16 +101,19 @@ const Header = () => {
                 FAQ
               </Link>
             </li>
-            <li className="mr-2">
-              <Link to="/login" className="text-[16px] font-medium">
-                Login
-              </Link>
-            </li>
-            <li className="mr-2">
-              <Link className="text-[16px] font-medium">
-                {user?.displayName}
-              </Link>
-            </li>
+            {user?.uid ?
+              <>
+                <span>{user?.displayName}</span>
+                <Link onClick={handleToLogOut} className="text-[16px] font-medium">
+                  Logout
+                </Link>
+              </>
+            : 
+              <>
+                <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
+                <li><Link to="/register" className="text-[16px] font-medium">Register</Link></li>
+              </>
+            }
           </ul>
         </div>
       </div>
