@@ -1,9 +1,39 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
+  const { providerLogin } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
+
+  const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
+
+  // Google Sign In
+  const handleToGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  // Github Sign In
+  const handleToGithubSignIn = () => {
+    providerLogin(githubProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const handleToChecked = (event) => {
     setAccepted(event.target.checked);
@@ -59,7 +89,10 @@ const Login = () => {
       </div>
       <div className="divider lg:w-[40%] lg:mx-auto mx-4 my-8">OR</div>
       <div className="w-[40%] mx-auto">
-        <button className="border-2 border-base-300 bg-transparent w-full py-3 my-3 rounded-full hover:bg-gray-200 duration-200 ease">
+        <button
+          onClick={handleToGoogleSignIn}
+          className="border-2 border-base-300 bg-transparent w-full py-3 my-3 rounded-full hover:bg-gray-200 duration-200 ease"
+        >
           <div className="flex items-center justify-center">
             <FaGoogle className="inline-block mr-5 text-2xl"></FaGoogle>
             <span className="text-xl font-semibold">Continue with Google</span>
@@ -67,7 +100,10 @@ const Login = () => {
         </button>
       </div>
       <div className="w-[40%] mx-auto">
-        <button className="border-2 border-base-300 bg-transparent w-full py-3 my-3 rounded-full hover:bg-gray-200 duration-200 ease">
+        <button
+          onClick={handleToGithubSignIn}
+          className="border-2 border-base-300 bg-transparent w-full py-3 my-3 rounded-full hover:bg-gray-200 duration-200 ease"
+        >
           <div className="flex items-center justify-center">
             <FaGithub className="inline-block mr-5 text-2xl"></FaGithub>
             <span className="text-xl font-semibold">Continue with Github</span>
