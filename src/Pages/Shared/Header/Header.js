@@ -72,7 +72,15 @@ const Header = () => {
               <>
                 <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
               </>
-            }
+              }
+              <Link to="/profile">
+              {
+                user?.photoURL ? 
+                    <li><img src={user?.photoURL} alt="" /></li>
+                    : 
+                    <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
+              }
+            </Link>
             </ul>
           </div>
           <Link to="/" className="text-2xl font-medium">
@@ -113,12 +121,12 @@ const Header = () => {
                 <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
               </>
             }
-            <Link to="/profile">
+            <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
             {
                 user?.photoURL ? 
-                    <img src={user?.photoURL} alt="" />
+                    <li><img src={user?.photoURL} alt="" /></li>
                     : 
-                    <span className="text-2xl"><FaUserCircle></FaUserCircle></span>
+                    <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
             }
             </Link>         
           </ul>
