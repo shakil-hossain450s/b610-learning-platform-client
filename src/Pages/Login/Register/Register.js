@@ -1,12 +1,13 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { providerLogin, createUser } = useContext(AuthContext);
+  const { providerLogin, createUser, verifyEmail } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -24,16 +25,18 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         form.reset();
-        if (user.emailVerified) {
-        } else {
-          toast.error("Please verify your email address");
-        }
+        verifyUserEmail();
+        toast.success('Please Verify Your Email');
       })
       .catch((error) => {
         console.log(error);
         toast.error(error.message);
       });
   };
+
+  const verifyUserEmail = () => {
+    verifyEmail();
+  }
 
   const handleToGoogleSignIn = () => {
     providerLogin(googleProvider)

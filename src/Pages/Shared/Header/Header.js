@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
-import { FaUserCircle } from "react-icons/fa";
+import { FaMoon, FaSun, FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
-  console.log(user?.displayName);
+  const [theme, setTheme] = useState(false);
 
   const handleToLogOut = () => {
     logOut()
@@ -61,26 +61,30 @@ const Header = () => {
                   FAQ
                 </Link>
               </li>
-              {user?.uid ?
-              <>
-                <span>{user?.displayName}</span>
-                <Link onClick={handleToLogOut} className="text-[16px] font-medium">
-                  Logout
-                </Link>
-              </>
-            : 
-              <>
-                <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
-              </>
-              }
-              <Link to="/profile">
               {
-                user?.photoURL ? 
-                    <li><img src={user?.photoURL} alt="" /></li>
-                    : 
-                    <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
+                user?.uid ?
+                  <>
+                    <span className="my-auto font-semibold">{user?.displayName}</span>
+                    <li>
+                      <Link onClick={handleToLogOut} className="text-[16px] font-medium">
+                        Logout
+                      </Link>
+                    </li>
+                  </>
+                  :
+                  <>
+                    <li><Link className="text-[16px] font-medium" to='/login'>Login</Link></li>
+                    <li><Link className="text-[16px] font-medium" to='/register'>Register</Link></li>
+                  </>
               }
-            </Link>
+              <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
+                {
+                  user?.photoURL ?
+                    <li><img style={{ borderRadius: '50%' }} className="w-[45px] px-2" src={user?.photoURL} alt="" /></li>
+                    :
+                    <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
+                }
+              </Link>
             </ul>
           </div>
           <Link to="/" className="text-2xl font-medium">
@@ -109,30 +113,40 @@ const Header = () => {
                 FAQ
               </Link>
             </li>
-            {user?.uid ?
+          </ul>
+        </div>
+        <ul>
+          {
+            user?.uid ?
               <>
-                <span className="my-auto font-semibold">{user?.displayName}</span>
+                <span className="my-auto font-semibold ml-5">{user?.displayName}</span>
                 <li>
-                  <Link onClick={handleToLogOut} className="text-[16px] font-medium">
-                  Logout
+                  <Link onClick={handleToLogOut} className="ml-5 text-[16px] font-medium">
+                    Logout
                   </Link>
                 </li>
               </>
-            : 
+              :
               <>
-                <li><Link to="/login" className="text-[16px] font-medium">Login</Link></li>
+                <li><Link className="text-[16px] mx-2 font-medium" to='/login'>Login</Link></li>
+                <li><Link className="text-[16px] mx-2 font-medium" to='/register'>Register</Link></li>
               </>
-            }
-            <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
+          }
+          <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
             {
-                user?.photoURL ? 
-                    <li><img style={{borderRadius: '50%'}} className="w-[45px] px-2" src={user?.photoURL} alt="" /></li>
-                    : 
-                    <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
+              user?.photoURL ?
+                <li><img style={{ borderRadius: '50%' }} className="w-[45px] px-1 ml-3" src={user?.photoURL} alt="" /></li>
+                :
+                <FaUserCircle className="inline-block my-auto px-2 text-[40px]"></FaUserCircle>
             }
-            </Link>         
-          </ul>
-        </div>
+          </Link>
+          {
+            theme ?
+              <button className="text-xl ml-3 my-auto" onClick={() => setTheme(!theme)}><FaSun></FaSun></button>
+              :
+              <button className="text-xl ml-3 my-auto"  onClick={() => setTheme(!theme)}><FaMoon></FaMoon></button>
+          }
+        </ul>
       </div>
     </div>
   );

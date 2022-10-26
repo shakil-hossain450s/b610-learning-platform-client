@@ -13,7 +13,7 @@ const Home = () => {
         <Link to='/courses'>
           <button
             className="bg-orange-500 border-2 border-orange-500 px-8 py-2 rounded-full text-white font-semibold hover:bg-gray-300 hover:border-2 hover:border-gray-500 hover:text-black">
-            Learn More
+            Get Courses
           </button>
         </Link>
       </div>

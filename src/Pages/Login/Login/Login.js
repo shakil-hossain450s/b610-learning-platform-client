@@ -1,15 +1,47 @@
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const Login = () => {
-  const { providerLogin } = useContext(AuthContext);
+  const { providerLogin, signIn, setLoading } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
+
+  const handleToSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then(result => {
+        const user = result.user;
+        console.log(user);
+        if (user.emailVerified) {
+          navigate(from, { replace: true });
+        }
+        else {
+          toast.error('Please Verify Your Email. Your Email is not verified')
+        }
+
+      })
+      .catch(error => {
+        console.log(error);
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+
+  }
 
   // Google Sign In
   const handleToGoogleSignIn = () => {
@@ -17,6 +49,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -43,7 +76,7 @@ const Login = () => {
     <div>
       <div className="mt-8 p-5 lg:w-[40%] lg:mx-auto mx-4 border-2 border-slate-300 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold my-3">Welcome Back</h2>
-        <form className="w-[90%] mx-auto">
+        <form onSubmit={handleToSubmit} className="w-[90%] mx-auto">
           <div>
             <label htmlFor="email" className="text-[16px] font-medium">
               Your Email
