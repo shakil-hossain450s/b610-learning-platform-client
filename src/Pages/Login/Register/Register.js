@@ -125,7 +125,7 @@ const Register = () => {
         </form>
       </div>
       <div className="divider lg:w-[40%] lg:mx-auto mx-4 my-8">OR</div>
-      <div className="w-[40%] mx-auto">
+      <div className="lg:w-[40%] lg:mx-auto w-[85%] mx-5">
         <button
           onClick={handleToGoogleSignIn}
           className="border-2 border-base-300 bg-transparent w-full py-3 my-3 rounded-full hover:bg-gray-200 duration-200 ease"
@@ -136,7 +136,7 @@ const Register = () => {
           </div>
         </button>
       </div>
-      <div className="w-[40%] mx-auto">
+      <div className="lg:w-[40%] lg:mx-auto w-[85%] mx-5">
         <button
           onClick={handleToGithubSignIn}
           className="border-2 border-base-300 bg-transparent w-full py-3 my-3 rounded-full hover:bg-gray-200 duration-200 ease"
