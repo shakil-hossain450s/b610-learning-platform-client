@@ -111,7 +111,7 @@ const Header = () => {
             </li>
             {user?.uid ?
               <>
-                <span>{user?.displayName}</span>
+                <span className="my-auto font-semibold">{user?.displayName}</span>
                 <li>
                   <Link onClick={handleToLogOut} className="text-[16px] font-medium">
                   Logout
@@ -126,7 +126,7 @@ const Header = () => {
             <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
             {
                 user?.photoURL ? 
-                    <li><img src={user?.photoURL} alt="" /></li>
+                    <li><img style={{borderRadius: '50%'}} className="w-[45px] px-2" src={user?.photoURL} alt="" /></li>
                     : 
                     <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
             }
