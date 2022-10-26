@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaRegClock, FaPlayCircle, FaArrowAltCircleLeft } from "react-icons/fa";
+import { FaRegClock, FaArrowAltCircleLeft } from "react-icons/fa";
 
 const CourseDetails = () => {
     const courseDetails = useLoaderData();
 
-    const { id, about, description, name, image, price, video_length, lessons } = courseDetails;
+    const { id, about, description, name, image, price, video_length, lessons, instructor } = courseDetails;
     console.log(courseDetails);
     return (
         <section className='w-[80%] mx-auto border-2 my-8 px-12 py-8 rounded-lg'>
@@ -35,6 +35,11 @@ const CourseDetails = () => {
                                 about.map(p => <li>{p}</li>)
                             }
                         </div>
+                    </div>
+                    <div>
+                        <h2 className='text-2xl font-medium mb-3'>About the Instructor</h2>
+                        <div className='divider my-1'></div>
+                        <p className='text-justify text-[17px] font-medium'>{instructor}</p>
                     </div>
                     <Link to={`/courses`}>
                         <button className='absolute top-2 right-3 text-2xl tooltip tooltip-bottom' data-tip="Previous">

@@ -1,12 +1,14 @@
 import React, { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const { providerLogin, createUser, verifyEmail } = useContext(AuthContext);
+  const { providerLogin, createUser, verifyEmail, updateUserProfile } = useContext(AuthContext);
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
@@ -27,12 +29,23 @@ const Register = () => {
         form.reset();
         verifyUserEmail();
         toast.success('Please Verify Your Email');
+        updateCurrentUserProfile(name, photoURL);
       })
       .catch((error) => {
         console.log(error);
         toast.error(error.message);
       });
   };
+
+  const updateCurrentUserProfile = (name, photoURL) => {
+    const profile = {
+        displayName: name,
+        photoURL: photoURL
+    }
+    updateUserProfile(profile)
+        .then(() => { })
+        .catch(error => console.log(error))
+}
 
   const verifyUserEmail = () => {
     verifyEmail();
@@ -43,6 +56,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);
@@ -54,6 +68,7 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.log(error);

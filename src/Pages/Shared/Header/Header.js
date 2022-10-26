@@ -88,7 +88,7 @@ const Header = () => {
             </ul>
           </div>
           <Link to="/" className="text-2xl font-medium">
-            Web Course
+            JavaScript Course
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">

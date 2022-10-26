@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <section className="mb-8">
+    <section className="my-8">
       <div className="flex justify-center items-center flex-col">
         <h2 className="text-4xl my-3 font-semibold">Learn Javascript Begainner To Advance</h2>
         <img className="w-[40%]" src={HomeLogo} alt="" />
