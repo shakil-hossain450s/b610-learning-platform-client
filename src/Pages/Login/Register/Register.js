@@ -57,9 +57,11 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         navigate(from, { replace: true });
+        toast.success('Logged in Successfully')
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message);
       });
   };
 
@@ -69,9 +71,11 @@ const Register = () => {
         const user = result.user;
         console.log(user);
         navigate(from, { replace: true });
+        toast.success('Logged in Successfully')
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message);
       });
   };
 

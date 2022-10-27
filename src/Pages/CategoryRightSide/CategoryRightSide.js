@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaDollarSign, FaInfoCircle } from 'react-icons/fa';
+import { FaDollarSign, FaInfoCircle, FaArrowAltCircleDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const CategoryRightSide = ({ category }) => {
@@ -9,7 +9,13 @@ const CategoryRightSide = ({ category }) => {
             <div className="card card-compact lg:w-80 h-96 w-full my-5 bg-base-100 relative shadow-2xl">
                 <figure><img src={image} alt="Shoes" /></figure>
                 <div className="card-body">
-                    <h2 className="card-title">{name}</h2>
+                    <div className='flex justify-between items-center px-2'>
+                        <h2 className="card-title">{name}</h2>
+                        <button
+                            className='text-2xl tooltip tooltip-left' data-tip="Download">
+                            <FaArrowAltCircleDown></FaArrowAltCircleDown>
+                        </button>
+                    </div>
                     <div className="card-actions justify-end">
                         <p className='flex justify-between items-center text-[18px] font-medium mt-3'>
                             <span>Price: ${price}</span>

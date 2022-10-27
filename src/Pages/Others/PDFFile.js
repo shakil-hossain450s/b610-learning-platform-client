@@ -2,8 +2,6 @@ import React from 'react';
 import { Page, Text, Image, Document, StyleSheet } from '@react-pdf/renderer';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
-import JavaScript from "../../asstes/images/javascriptLogo.png"
-import { useLoaderData } from 'react-router-dom';
 
 const styles = StyleSheet.create({
     body: {
@@ -21,7 +19,6 @@ const styles = StyleSheet.create({
         textAlign: "justify",
     },
     image: {
-        width: "60%",
         marginVertical: 15,
         marginHorizontal: 100,
     },
@@ -42,13 +39,12 @@ const styles = StyleSheet.create({
 });
 
 const PDFFile = () => {
-    const { pdfData } = useLoaderData();
     return (
         <Document>
             <Page style={styles.body}>
-                <Text style={styles.header}>{pdfData?.name}</Text>
-                <Image style={styles.image} src={pdfData.image}></Image>
-                <Text style={styles.title}>{pdfData?.description}</Text>
+                <Text style={styles.header}>Course Name</Text>
+                {/* <Image style={styles.image} src={pdf?.image}></Image> */}
+                <Text style={styles.title}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Non, a incidunt laborum quisquam labore esse tempore autem sunt voluptatem beatae? Fugiat adipisci excepturi impedit beatae aspernatur aut, cum consectetur modi, deleniti incidunt exercitationem laudantium atque cupiditate harum? Explicabo nisi molestiae et laudantium magni, soluta ut repellendus eveniet fugiat, omnis laborum!</Text>
                 <Text
                     style={styles.pageNumber}
                     render={({ pageNumber, totalPages }) =>

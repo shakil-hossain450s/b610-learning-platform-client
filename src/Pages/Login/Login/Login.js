@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 const Login = () => {
   const { providerLogin, signIn, setLoading } = useContext(AuthContext);
   const [accepted, setAccepted] = useState(false);
+  const [error, setError] = useState('');
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Login = () => {
       .catch(error => {
         console.log(error);
         toast.error(error.message);
+        setError(error.message);
       })
       .finally(() => {
         setLoading(false)
@@ -50,9 +52,11 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         navigate('/');
+        toast.success("Logged in Successfully");
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message);
       });
   };
 
@@ -63,9 +67,11 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         navigate('/');
+        toast.success("Logged in Successfully");
       })
       .catch((error) => {
         console.log(error);
+        toast.error(error.message)
       });
   };
 
@@ -100,6 +106,7 @@ const Login = () => {
               className="input input-bordered w-[100%] mt-2"
             />
           </div>
+          <p className="text-red-600">{error}</p>
           <div>
             <input onClick={handleToChecked} type="checkbox" />
             <label className="mx-2" htmlFor="rememberme">

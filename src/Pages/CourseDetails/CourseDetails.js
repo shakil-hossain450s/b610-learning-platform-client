@@ -48,18 +48,6 @@ const CourseDetails = () => {
                             }
                         </div>
                     </div>
-                    {/* <div className=' mx-auto '>
-                        <PDFDownloadLink document={<PDFFile></PDFFile>} fileName="FORM" >
-                            {({ loading }) =>
-                            (loading ?
-                                "Loading..." :
-                                <button className='btn hover:bg-gray-200 hover:text-black hover:border-2'>
-                                    <span className='mr-2'>Download</span>
-                                    <FaDownload></FaDownload>
-                                </button>)}
-                        </PDFDownloadLink>
-                    </div> */}
-                    
                 </div>
             </div>
         </section>
