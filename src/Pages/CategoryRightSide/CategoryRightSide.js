@@ -1,4 +1,5 @@
 import React from 'react';
+import { FaDollarSign, FaInfoCircle } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const CategoryRightSide = ({ category }) => {
@@ -14,9 +15,22 @@ const CategoryRightSide = ({ category }) => {
                             <span>Price: ${price}</span>
                             <span>Lessons: {lessons}</span>
                         </p>
-                        <Link to={`/course/${id}`} className='w-full mx-auto block'>
-                            <button className="btn bg-orange-500 border-orange-500 w-[90%] mx-auto absolute bottom-2 ">Details</button>
-                        </Link>
+                        <div className='absolute left-2 bottom-2 flex justify-center w-full'>
+                            <Link to={`/course/${id}`}>
+                                <button
+                                    className='btn flex mx-5 hover:bg-gray-200 border-dark hover:text-black hover:border-2'>
+                                    <span className='mr-2'>Details</span>
+                                    <FaInfoCircle></FaInfoCircle>
+                                </button>
+                            </Link>
+                            <Link to={`/course-details/${id}`}>
+                                <button
+                                    className='flex mx-5 btn hover:bg-gray-200 hover:text-black hover:border-2'>
+                                    <span className='mr-2'>Premium</span>
+                                    <FaDollarSign></FaDollarSign>
+                                </button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

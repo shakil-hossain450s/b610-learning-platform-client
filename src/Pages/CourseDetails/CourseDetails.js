@@ -64,12 +64,7 @@ const CourseDetails = () => {
                                 </button>)}
                         </PDFDownloadLink>
                     </div> */}
-                    <Link to={`/course-details/${id}`}>
-                        <button className='btn hover:bg-gray-200 hover:text-black hover:border-2'>
-                            <span className='mr-2'>Get Premium Access</span>
-                            <FaDollarSign></FaDollarSign>
-                        </button>
-                    </Link>
+                    
                 </div>
             </div>
         </section>

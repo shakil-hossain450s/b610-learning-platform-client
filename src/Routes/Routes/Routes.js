@@ -7,8 +7,9 @@ import FAQ from "../../Pages/FAQ/FAQ/FAQ";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
-import PDFFile from "../../Pages/Others/PDFFile";
-import PremiumAccess from "../../Pages/Others/PremiumAccess/PremiumAccess";
+import Checkout from "../../Pages/Others/Checkout/Checkout";
+import ErrorCheck from "../../Pages/Others/ErrorCheck/ErrorCheck";
+import SuccefullyChecked from "../../Pages/Others/SuccefullyCheckd/SuccefullyChecked";
 import Profile from "../../Pages/Profile/Profile/Profile";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -52,14 +53,17 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/course-details/:id",
-        element: <PrivateRoute><PremiumAccess></PremiumAccess></PrivateRoute>,
+        element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
         loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/course-details/${params.id}`)
       },
       {
-        path: "/pdf-details/:id",
-        element:<PDFFile></PDFFile>,
-        loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/pdf-details/${params.id}`)
+        path: '/successfully-checked',
+        element: <SuccefullyChecked></SuccefullyChecked>
       },
+      {
+        path: '/error-check',
+        element: <ErrorCheck></ErrorCheck>
+      }
 
     ],
   },

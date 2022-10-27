@@ -1,14 +1,16 @@
 import React from "react";
 import './Home.css';
-import HomeLogo from "../../../asstes/images/javascriptLogo.png"
+import HomeLogo from "../../../asstes/images/Homelogo.jpeg"
 import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <section className="my-8">
       <div className="flex justify-center items-center flex-col lg:px-0 px-3">
-        <h2 className="lg:text-4xl text-3xl text-center lg:my-2 my-5 font-semibold">Learn Javascript Begainner To Advance</h2>
-        <img className="lg:w-[40%]" src={HomeLogo} alt="" />
+        <h2 className="lg:text-4xl text-3xl text-center lg:my-5 my-5 font-semibold">
+          Learn Web Development Begainner To Advance
+        </h2>
+        <img className="lg:w-[40%] rounded-md border p-2 shadow-md" src={HomeLogo} alt="" />
         <p className="lg:text-[17x] text-xl text-center my-3">The Interactive Learning Destination for aspiring and experince Developers</p>
         <Link to='/courses'>
           <button
