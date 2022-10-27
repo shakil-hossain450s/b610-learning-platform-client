@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
-    <section className="my-8">
+    <section className="lg:my-12 my-20">
       <div className="flex justify-center items-center flex-col lg:px-0 px-3">
         <h2 className="lg:text-4xl text-3xl text-center lg:my-5 my-5 font-semibold">
           Learn Web Development Begainner To Advance
