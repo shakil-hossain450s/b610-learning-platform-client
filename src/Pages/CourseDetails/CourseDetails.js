@@ -48,11 +48,6 @@ const CourseDetails = () => {
                             }
                         </div>
                     </div>
-                    <div>
-                        <h2 className='text-2xl font-medium mb-3'>About the Instructor</h2>
-                        <div className='divider my-1'></div>
-                        <p className='text-justify text-[17px] font-medium'>{instructor}</p>
-                    </div>
                     {/* <div className=' mx-auto '>
                         <PDFDownloadLink document={<PDFFile></PDFFile>} fileName="FORM" >
                             {({ loading }) =>

@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaMoon, FaSun, FaUserCircle } from "react-icons/fa";
+import Logo from "../../../asstes/images/logo.png"
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -87,8 +88,9 @@ const Header = () => {
               </Link>
             </ul>
           </div>
-          <Link to="/" className="text-2xl font-medium">
-            Web Hero
+          <Link to="/" className="text-2xl font-medium flex">
+            <img className="w-[80px]" src={Logo} alt="" />
+            <span> Web Hero</span>
           </Link>
         </div>
         <div className="navbar-center hidden lg:flex">
