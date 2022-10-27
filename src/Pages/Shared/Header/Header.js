@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import { FaMoon, FaSun, FaUserCircle } from "react-icons/fa";
-import Logo from "../../../asstes/images/logo.png"
+import Logo from "../../../asstes/images/logo.png";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
