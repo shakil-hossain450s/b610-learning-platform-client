@@ -17,7 +17,7 @@ const Checkout = () => {
 
     const data = useLoaderData();
     return (
-        <div className='border-2 p-5 shadow-lg ld:w-[35%] lg:mx-auto mx-5 my-[17%]'>
+        <div className='border-2 p-5 shadow-lg lg:w-[35%] lg:mx-auto mx-5 my-[17%]'>
             <div>
                 <h2 className='text-2xl lg:text-center mb-2'>Check Out</h2>
                 <div className='divider my-1'></div>
