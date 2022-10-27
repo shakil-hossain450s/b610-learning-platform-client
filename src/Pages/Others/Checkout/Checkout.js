@@ -17,20 +17,20 @@ const Checkout = () => {
 
     const data = useLoaderData();
     return (
-        <div className='border-2 p-5 shadow-lg w-[35%] mx-auto my-[17%]'>
+        <div className='border-2 p-5 shadow-lg ld:w-[35%] lg:mx-auto mx-5 my-[17%]'>
             <div>
-                <h2 className='text-2xl text-center mb-2'>Check Out</h2>
+                <h2 className='text-2xl lg:text-center mb-2'>Check Out</h2>
                 <div className='divider my-1'></div>
-                <div className='flex justify-between items-center bg-base-300 p-4 rounded'>
-                    <h6 className="text-center font-medium">
-                        <p>{data?.name}</p>
+                <div className='lg:flex justify-between items-center bg-base-300 p-4 rounded'>
+                    <h6 className="lg:text-center font-medium my-2">
+                        <p className='font-medium'>{data?.name}</p>
                         <p>Price: ${data?.price}</p>
                     </h6>
-                    <h6 className='text-center font-medium'>
-                        <p>Total Lessons</p>
+                    <h6 className='lg:text-center font-medium my-2'>
+                        <p className='font-medium'>Total Lessons</p>
                         <p>{data?.lessons}</p>
                     </h6>
-                    <div className='flex'>
+                    <div className='flex my-2'>
                         <button
                             onClick={handleToCheck}
                             className='bg-green-600 px-3 py-1 rounded-full text-white hover:bg-green-700 mr-2'>
