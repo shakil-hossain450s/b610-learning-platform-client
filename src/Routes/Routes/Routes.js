@@ -7,6 +7,7 @@ import FAQ from "../../Pages/FAQ/FAQ/FAQ";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
+import PDFFile from "../../Pages/Others/PDFFile";
 import Profile from "../../Pages/Profile/Profile/Profile";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -46,7 +47,7 @@ export const routes = createBrowserRouter([
       {
         path: "/course/:id",
         element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`https://learning-website-server-gold.vercel.app/course/${params.id}`)
+        loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/course/${params.id}`)
       }
     ],
   },

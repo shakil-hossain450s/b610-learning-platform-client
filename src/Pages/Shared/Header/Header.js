@@ -17,8 +17,8 @@ const Header = () => {
       .catch((error) => console.error(error));
   };
   return (
-    <div className="sticky top-0 left-0 z-20">
-      <div className="navbar bg-gray-100 shadow-md d-flex justify-between lg:px-12">
+    <div className="sticky lg:top-0 top-[-5px] left-0 z-20">
+      <div className="navbar bg-gray-100 shadow-md flex justify-between lg:px-12">
         <div className="">
           <div className="dropdown">
             <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -64,7 +64,7 @@ const Header = () => {
               {
                 user?.uid ?
                   <>
-                    <span className="my-auto font-semibold">{user?.displayName}</span>
+                    <li><span className="my-auto font-semibold text-[16px]">{user?.displayName}</span></li>
                     <li>
                       <Link onClick={handleToLogOut} className="text-[16px] font-medium">
                         Logout
@@ -80,7 +80,7 @@ const Header = () => {
               <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
                 {
                   user?.photoURL ?
-                    <li><img style={{ borderRadius: '50%' }} className="w-[45px] px-2" src={user?.photoURL} alt="" /></li>
+                    <li><img style={{ borderRadius: '50%' }} className="w-[45px] px-2 ml-2" src={user?.photoURL} alt="" /></li>
                     :
                     <FaUserCircle className="inline-block pt-[7px] px-2 text-[40px]"></FaUserCircle>
                 }
@@ -113,40 +113,38 @@ const Header = () => {
                 FAQ
               </Link>
             </li>
+            {
+              user?.uid ?
+                <>
+                  <span className="my-auto font-semibold ml-5">{user?.displayName}</span>
+                  <li>
+                    <Link onClick={handleToLogOut} className="ml-5 text-[16px] font-medium">
+                      Logout
+                    </Link>
+                  </li>
+                </>
+                :
+                <>
+                  <li><Link className="text-[16px] mx-2 font-medium" to='/login'>Login</Link></li>
+                  <li><Link className="text-[16px] mx-2 font-medium" to='/register'>Register</Link></li>
+                </>
+            }
+            <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
+              {
+                user?.photoURL ?
+                  <img style={{ borderRadius: '50%' }} className="w-[45px] mt-1 px-1 ml-3" src={user?.photoURL} alt="" />
+                  :
+                  <FaUserCircle className="inline-block my-auto px-2 text-[40px]"></FaUserCircle>
+              }
+            </Link>
+            {
+              theme ?
+                <button className="text-xl ml-3 my-auto" onClick={() => setTheme(!theme)}><FaSun></FaSun></button>
+                :
+                <button className="text-xl ml-3 my-auto" onClick={() => setTheme(!theme)}><FaMoon></FaMoon></button>
+            }
           </ul>
         </div>
-        <ul>
-          {
-            user?.uid ?
-              <>
-                <span className="my-auto font-semibold ml-5">{user?.displayName}</span>
-                <li>
-                  <Link onClick={handleToLogOut} className="ml-5 text-[16px] font-medium">
-                    Logout
-                  </Link>
-                </li>
-              </>
-              :
-              <>
-                <li><Link className="text-[16px] mx-2 font-medium" to='/login'>Login</Link></li>
-                <li><Link className="text-[16px] mx-2 font-medium" to='/register'>Register</Link></li>
-              </>
-          }
-          <Link to="/profile" className="tooltip tooltip-bottom" data-tip={user?.displayName ? user?.displayName : 'Profile'}>
-            {
-              user?.photoURL ?
-                <li><img style={{ borderRadius: '50%' }} className="w-[45px] px-1 ml-3" src={user?.photoURL} alt="" /></li>
-                :
-                <FaUserCircle className="inline-block my-auto px-2 text-[40px]"></FaUserCircle>
-            }
-          </Link>
-          {
-            theme ?
-              <button className="text-xl ml-3 my-auto" onClick={() => setTheme(!theme)}><FaSun></FaSun></button>
-              :
-              <button className="text-xl ml-3 my-auto"  onClick={() => setTheme(!theme)}><FaMoon></FaMoon></button>
-          }
-        </ul>
       </div>
     </div>
   );
