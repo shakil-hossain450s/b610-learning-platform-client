@@ -24,7 +24,7 @@ const Checkout = () => {
                 <div className='flex justify-between items-center bg-base-300 p-4 rounded'>
                     <h6 className="text-center font-medium">
                         <p>{data?.name}</p>
-                        <p>Price: {data?.price}</p>
+                        <p>Price: ${data?.price}</p>
                     </h6>
                     <h6 className='text-center font-medium'>
                         <p>Total Lessons</p>

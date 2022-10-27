@@ -50,7 +50,7 @@ export const routes = createBrowserRouter([
       },
       {
         path: "/course/:id",
-        element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>,
+        element: <CourseDetails></CourseDetails>,
         loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/course/${params.id}`)
       },
       {
@@ -60,11 +60,11 @@ export const routes = createBrowserRouter([
       },
       {
         path: '/successfully-checked',
-        element: <SuccefullyChecked></SuccefullyChecked>
+        element: <PrivateRoute><SuccefullyChecked></SuccefullyChecked></PrivateRoute>
       },
       {
         path: '/error-check',
-        element: <ErrorCheck></ErrorCheck>
+        element: <PrivateRoute><ErrorCheck></ErrorCheck></PrivateRoute>
       }
 
     ],
