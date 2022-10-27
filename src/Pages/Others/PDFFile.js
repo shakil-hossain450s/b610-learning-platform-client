@@ -42,12 +42,13 @@ const styles = StyleSheet.create({
 });
 
 const PDFFile = () => {
+    const { pdfData } = useLoaderData();
     return (
         <Document>
             <Page style={styles.body}>
-                <Text style={styles.header}>{'user?.displayName'}</Text>
-                <Image style={styles.image} src={'user?.imageURL'}></Image>
-                <Text style={styles.title}>{}</Text>
+                <Text style={styles.header}>{pdfData?.name}</Text>
+                <Image style={styles.image} src={pdfData.image}></Image>
+                <Text style={styles.title}>{pdfData?.description}</Text>
                 <Text
                     style={styles.pageNumber}
                     render={({ pageNumber, totalPages }) =>

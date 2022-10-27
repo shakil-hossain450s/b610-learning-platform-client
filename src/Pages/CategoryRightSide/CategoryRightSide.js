@@ -15,7 +15,7 @@ const CategoryRightSide = ({ category }) => {
                             <span>Lessons: {lessons}</span>
                         </p>
                         <Link to={`/course/${id}`} className='w-full mx-auto block'>
-                            <button className="btn bg-orange-500 border-orange-500 w-[90%] mx-auto absolute bottom-2 ">Get Premium Access</button>
+                            <button className="btn bg-orange-500 border-orange-500 w-[90%] mx-auto absolute bottom-2 ">Details</button>
                         </Link>
                     </div>
                 </div>

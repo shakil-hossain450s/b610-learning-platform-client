@@ -8,6 +8,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login/Login";
 import Register from "../../Pages/Login/Register/Register";
 import PDFFile from "../../Pages/Others/PDFFile";
+import PremiumAccess from "../../Pages/Others/PremiumAccess/PremiumAccess";
 import Profile from "../../Pages/Profile/Profile/Profile";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -48,7 +49,18 @@ export const routes = createBrowserRouter([
         path: "/course/:id",
         element: <PrivateRoute><CourseDetails></CourseDetails></PrivateRoute>,
         loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/course/${params.id}`)
-      }
+      },
+      {
+        path: "/course-details/:id",
+        element: <PrivateRoute><PremiumAccess></PremiumAccess></PrivateRoute>,
+        loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/course-details/${params.id}`)
+      },
+      {
+        path: "/pdf-details/:id",
+        element:<PDFFile></PDFFile>,
+        loader: ({ params }) => fetch(`https://learning-website-server-gold.vercel.app/pdf-details/${params.id}`)
+      },
+
     ],
   },
 ]);

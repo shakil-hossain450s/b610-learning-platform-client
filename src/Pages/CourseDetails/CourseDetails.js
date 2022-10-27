@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
-import { FaRegClock, FaDownload, FaChevronCircleLeft } from "react-icons/fa";
+import { FaRegClock, FaDownload, FaChevronCircleLeft, FaDollarSign } from "react-icons/fa";
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import { PDFDownloadLink } from '@react-pdf/renderer';
@@ -53,7 +53,7 @@ const CourseDetails = () => {
                         <div className='divider my-1'></div>
                         <p className='text-justify text-[17px] font-medium'>{instructor}</p>
                     </div>
-                    <div className=' mx-auto '>
+                    {/* <div className=' mx-auto '>
                         <PDFDownloadLink document={<PDFFile></PDFFile>} fileName="FORM" >
                             {({ loading }) =>
                             (loading ?
@@ -63,7 +63,13 @@ const CourseDetails = () => {
                                     <FaDownload></FaDownload>
                                 </button>)}
                         </PDFDownloadLink>
-                    </div>
+                    </div> */}
+                    <Link to={`/course-details/${id}`}>
+                        <button className='btn hover:bg-gray-200 hover:text-black hover:border-2'>
+                            <span className='mr-2'>Get Premium Access</span>
+                            <FaDollarSign></FaDollarSign>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </section>
